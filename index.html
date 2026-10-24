@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LISC • CRM Interno</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="loginView" class="login-wrap">
+    <section class="login-card">
+      <div class="brand brand-login"><span class="brand-mark">L</span><div><b>LISC</b><small>Central de chamados internos</small></div></div>
+      <h1>Bem-vindo(a) de volta</h1><p class="muted">Entre para acompanhar suas atividades.</p>
+      <form id="loginForm">
+        <label>E-mail corporativo<input id="loginEmail" type="email" placeholder="voce@lisc.com.br" required></label>
+        <label>Senha<input id="loginPassword" type="password" placeholder="Qualquer senha para demonstração" required></label>
+        <button class="primary full" type="submit">Entrar no sistema</button>
+      </form>
+      <p class="demo-note">Demonstração: use <b>ana@lisc.com.br</b> ou qualquer e-mail e uma senha.</p>
+    </section>
+  </div>
+  <div id="appView" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">L</span><div><b>LISC</b><small>Workspace</small></div></div>
+      <div class="workspace-label">ESPAÇO DE TRABALHO</div>
+      <button class="nav active" data-page="dashboard">▦ <span>Meu painel</span></button>
+      <button class="nav" data-page="tickets">▤ <span>Todos os chamados</span></button>
+      <button class="nav" data-page="chat">◌ <span>Chat interno</span><span class="nav-dot"></span></button>
+      <button class="nav" data-page="profile">♙ <span>Meu perfil</span></button>
+      <div class="sidebar-bottom"><div class="mini-avatar" id="sideAvatar">AN</div><div class="user-meta"><b id="sideName">Ana Nogueira</b><small id="sideDept">Tecnologia</small></div><button id="logoutBtn" title="Sair" class="icon-button">↪</button></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><span class="eyebrow">LISC / <span id="crumb">Meu painel</span></span><h2 id="pageTitle">Meu painel</h2></div><div class="top-actions"><span class="today" id="today"></span><button class="avatar" id="topAvatar">AN</button></div></header>
+      <section id="dashboardPage" class="page">
+        <div class="welcome-row"><div><h3>Olá, <span id="welcomeName">Ana</span> 👋</h3><p class="muted">Aqui está o resumo dos seus chamados.</p></div><button class="primary" id="newTicketBtn">＋ Abrir chamado</button></div>
+        <div class="stats">
+          <div class="stat-card"><span class="stat-icon purple">▤</span><div><small>Meus chamados</small><strong id="statTotal">0</strong><span class="stat-foot">Abertos por você ou atribuídos</span></div></div>
+          <div class="stat-card"><span class="stat-icon amber">◷</span><div><small>Pendentes</small><strong id="statPending">0</strong><span class="stat-foot">Aguardando atendimento</span></div></div>
+          <div class="stat-card"><span class="stat-icon blue">↻</span><div><small>Em andamento</small><strong id="statProgress">0</strong><span class="stat-foot">Em atendimento</span></div></div>
+          <div class="stat-card"><span class="stat-icon green">✓</span><div><small>Concluídos no período</small><strong id="statDone">0</strong><span class="stat-foot">Chamados finalizados</span></div></div>
+        </div>
+        <div class="section-heading"><div><h3>Meu Kanban</h3><p class="muted">Acompanhe o andamento dos chamados.</p></div><select id="periodFilter" aria-label="Período"><option value="all">Todo o período</option><option value="7">Últimos 7 dias</option><option value="30">Últimos 30 dias</option></select></div>
+        <div class="kanban" id="kanban"></div>
+      </section>
+      <section id="ticketsPage" class="page hidden"><div class="section-heading"><div><h3>Todos os chamados</h3><p class="muted">Visão geral dos chamados cadastrados na demonstração.</p></div><button class="primary" id="newTicketBtn2">＋ Abrir chamado</button></div><div id="ticketTable" class="ticket-table"></div></section>
+      <section id="chatPage" class="page hidden"><div class="chat-layout"><div class="chat-people"><h3>Conversas</h3><button class="person active"><span class="mini-avatar">EQ</span><span><b>Equipe LISC</b><small>Canal geral</small></span><i>●</i></button><button class="person"><span class="mini-avatar alt">MR</span><span><b>Marcos Ribeiro</b><small>Disponível</small></span></button><button class="person"><span class="mini-avatar pink">JP</span><span><b>Juliana Prado</b><small>Disponível</small></span></button></div><div class="chat-panel"><div class="chat-head"><span class="mini-avatar">EQ</span><div><b>Equipe LISC</b><small>Chat interno • demonstração local</small></div></div><div id="internalMessages" class="messages"></div><form id="internalChatForm" class="message-form"><input id="internalMessage" placeholder="Escreva uma mensagem..." required><button class="primary">Enviar ↑</button></form></div></div></section>
+      <section id="profilePage" class="page hidden"><div class="profile-card"><div class="profile-cover"></div><div class="profile-content"><div class="profile-avatar" id="profileAvatar">AN</div><button class="secondary edit-profile" id="editProfileBtn">Editar perfil</button><h3 id="profileName">Ana Nogueira</h3><p class="muted" id="profileRole">Analista • Tecnologia</p><div class="profile-grid"><div><small>E-mail</small><b id="profileEmail">ana@lisc.com.br</b></div><div><small>Setor</small><b id="profileDept">Tecnologia</b></div><div><small>Perfil de acesso</small><b>Colaborador</b></div><div><small>Status</small><b><span class="online-dot"></span> Ativo</b></div></div></div></div></section>
+    </main>
+  </div>
+  <div id="ticketModal" class="modal hidden"><div class="modal-backdrop" data-close="ticketModal"></div><div class="modal-card"><button class="modal-close" data-close="ticketModal">×</button><h2 id="modalHeading">Abrir chamado</h2><p class="muted">Descreva o problema para que a equipe possa ajudar.</p><form id="ticketForm"><label>Título do chamado<input id="ticketTitle" required maxlength="90" placeholder="Ex.: Computador não conecta à rede"></label><div class="form-row"><label>Setor<select id="ticketDept"><option>Tecnologia</option><option>Financeiro</option><option>Recursos Humanos</option><option>Operações</option><option>Comercial</option><option>Infraestrutura</option></select></label><label>Gravidade<select id="ticketSeverity"><option value="Baixa">Baixa</option><option value="Média" selected>Média</option><option value="Alta">Alta</option><option value="Crítica">Crítica</option></select></label></div><label>Descrição<textarea id="ticketDescription" rows="4" required placeholder="Informe detalhes, impacto e mensagens de erro..."></textarea></label><label>Atribuir responsável<select id="ticketAssignee"><option>Não atribuído</option><option>Ana Nogueira</option><option>Marcos Ribeiro</option><option>Juliana Prado</option></select></label><button class="primary full">Criar chamado</button></form></div></div>
+  <div id="detailModal" class="modal hidden"><div class="modal-backdrop" data-close="detailModal"></div><div class="modal-card detail-card"><button class="modal-close" data-close="detailModal">×</button><div id="ticketDetail"></div></div></div>
+  <div id="editModal" class="modal hidden"><div class="modal-backdrop" data-close="editModal"></div><div class="modal-card"><button class="modal-close" data-close="editModal">×</button><h2>Editar perfil</h2><form id="profileForm"><label>Nome completo<input id="editName" required></label><label>Cargo<input id="editRole" required></label><label>Setor<select id="editDept"><option>Tecnologia</option><option>Financeiro</option><option>Recursos Humanos</option><option>Operações</option><option>Comercial</option><option>Infraestrutura</option></select></label><button class="primary full">Salvar alterações</button></form></div></div>
+  <script src="app.js"></script>
+</body></html>
